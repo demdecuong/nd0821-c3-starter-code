@@ -1,1 +1,1 @@
-web: cd starter && uvicorn main:app --host=0.0.0.0 --port=${PORT:-5000}
+web: cd starter && python starter/train_model.py && uvicorn main:app --host=0.0.0.0 --port=${PORT:-5000}
