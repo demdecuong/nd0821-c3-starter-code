@@ -1,6 +1,10 @@
 import json
+import httpx
 from fastapi.testclient import TestClient
+
 from main import app
+import warnings
+warnings.filterwarnings("ignore")
 
 client = TestClient(app)
 
@@ -8,7 +12,6 @@ def test_get_root():
     r = client.get("/")
     assert r.status_code == 200
     assert r.json() == "Hello World!"
-
 
 def test_post_sample_less_and_equal_than_50K():
     data = {
@@ -30,7 +33,6 @@ def test_post_sample_less_and_equal_than_50K():
     r = client.post("/", data=json.dumps(data))
     assert r.status_code == 200
     assert r.json() == "<=50K"
-
 
 def test_post_sample_greater_than_50K():
     data = {
